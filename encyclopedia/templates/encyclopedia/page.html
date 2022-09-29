@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{title}}</h1>
 	{% if content %}
-		<p>{{content}}</p>
+		{{content|safe}}
 		<br>Something wrong? <a href="{% url 'encyclopedia:edit' title %}">Edit</a> this page!
 	{% else %}
 		<p>Page content not found</p>

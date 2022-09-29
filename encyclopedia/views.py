@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib import messages
 from django import forms
+from markdown2 import Markdown
 
 from . import util
 
@@ -33,11 +34,11 @@ def index(request):
     })
 
 def page(request, entry):
-    pageContent = util.get_entry(entry);
+    content = util.get_entry(entry);
 
     return render(request, "encyclopedia/page.html", {
         "title": entry.capitalize(),
-        "content": pageContent
+        "content": Markdown().convert(content)
     })
 
 def search(request):
